@@ -19,6 +19,9 @@ import Navbar from '@/components/navbar'
 import Loading from '@/components/loading'
 import Footer from '@/components/Footer'
 import Sidebar from '@/components/sidebar'
+
+
+
 export default {
   components:{
     Navbar,
@@ -54,12 +57,12 @@ export default {
   border-radius: 7px !important;
 }
 @font-face {
-  font-family: boldCairo;
-  src: url('../assets/Cairo/Cairo-bold.ttf');
+  font-family: "boldCairo";
+  src: url('../assets/Cairo/Cairo-Bold.ttf');
 }
 
 @font-face {
-  font-family: regularCairo;
+  font-family: "regularCairo";
   src: url('../assets/Cairo/Cairo-Regular.ttf');
 }
 
