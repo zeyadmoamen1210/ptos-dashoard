@@ -29,7 +29,7 @@
           <template #icon>
             <img style="width:30px;" src="@/assets/imgs/icons/employee.svg" alt="">
           </template>
-          الموظفين
+          إضافة شاملة
         </vs-sidebar-item>
         <vs-sidebar-item id="Music">
           <template #icon>
