@@ -55,12 +55,12 @@ export default {
 }
 @font-face {
   font-family: boldCairo;
-  src: url(../assets/Cairo/Cairo-bold.ttf);
+  src: url('../assets/Cairo/Cairo-bold.ttf');
 }
 
 @font-face {
   font-family: regularCairo;
-  src: url(../assets/Cairo/Cairo-Regular.ttf);
+  src: url('../assets/Cairo/Cairo-Regular.ttf');
 }
 
 
