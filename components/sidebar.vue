@@ -31,6 +31,15 @@
           </template>
           إضافة شاملة
         </vs-sidebar-item>
+
+        <vs-sidebar-item to="/cities" id="Music">
+          <template #icon>
+            <img style="width:30px;" src="@/assets/imgs/icons/buildings.svg" alt="">
+          </template>
+          المحافظات
+        </vs-sidebar-item>
+
+
         <vs-sidebar-item id="Music">
           <template #icon>
             <img style="width:30px;" src="@/assets/imgs/icons/owner.svg" alt="">

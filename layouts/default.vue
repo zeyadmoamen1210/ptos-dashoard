@@ -56,6 +56,12 @@ export default {
 .vs-button{
   border-radius: 7px !important;
 }
+label{
+  font-family: 'regularCairo' !important;
+}
+.vs-dialog__content.notFooter{
+  text-align: right;
+}
 @font-face {
   font-family: "boldCairo";
   src: url('../assets/Cairo/Cairo-Bold.ttf');
@@ -147,6 +153,9 @@ button{
 }
 * {
   
+  font-family: "regularCairo", sans-serif;
+}
+h1,h2,h3,h4,h5,h6{
   font-family: "boldCairo", sans-serif;
 }
 .file-uploader{

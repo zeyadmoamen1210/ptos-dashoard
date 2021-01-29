@@ -374,6 +374,10 @@
                         <h6 style="    font-size: 12px;margin-top: 4px;font-family: 'regularCairo';"> {{car.owner.wallet}} <font-awesome-icon style="width: 17px;color: #dcba21;" :icon="['fas' ,'coins']"></font-awesome-icon> </h6>
                       </div>
                     </div>
+
+                    <vs-button style="width:100%" @click="$router.push(`/car/${car.id}`)">
+                      <img style="width:30px;" src="@/assets/imgs/icons/qr-code.svg" alt="">
+                      الأكواد</vs-button>
                   </div>
             </div>
             <div v-if="carTotalPages > 1" style="width:100%;margin-top:15px">
@@ -623,6 +627,19 @@
                       <div>
                         <h6> النوع : </h6>
                         <span> {{car.type}} </span>
+                      </div>
+
+
+                      <div style="display:flex;flex-wrap:wrap" v-if="car.type == 'travel'">
+                        <div style="flex:1">
+                          <h6> من : </h6>
+                          <span> {{car.from}} </span>
+                        </div>
+
+                        <div style="flex:1">
+                          <h6> إلي : </h6>
+                          <span> {{car.to}} </span>
+                        </div>
                       </div>
 
                       <div>
@@ -947,6 +964,35 @@
           :options="[{text:'عام', value: 'public'}, {text:'سفر', value: 'travel'} ]"
            ></v-select>
         </div>
+
+
+        <!-- if car type is travel he must add (from and to) -->
+        <div v-if="newCar.type == 'travel'">
+
+          <div class="form-group">
+           <v-select
+          v-model="newCar.from"
+           label="nameAr"
+          placeholder="من"
+          :reduce="nameAr => nameAr.id"
+          :options="cities"
+           ></v-select>
+        </div>
+
+        <div class="form-group">
+           <v-select
+          v-model="newCar.to"
+           label="nameAr"
+          placeholder="إلي"
+          :reduce="nameAr => nameAr.id"
+          :options="cities"
+           ></v-select>
+        </div>
+
+        </div>
+
+
+        
         <div class="form-group">
            <v-select v-model="newCar.transportType"
            label="text"
@@ -975,6 +1021,7 @@ export default {
   middleware: ['auth'],
   data(){
     return {
+      cities: [],
       employees: [],
       carsOptions: [],
       addDriver:{},
@@ -1082,6 +1129,12 @@ export default {
 
   },
   methods:{
+    getCities(){
+        this.isLoading = true;
+        this.$axios.get(`/governorates?paginate=false`).then(res => {
+          this.cities = res.data;
+        }).finally(() => this.isLoading = false);
+    },
     addWithDrowMain(){
       const loading = this.$vs.loading();
       this.addWithDrowPopup = false;
@@ -1156,13 +1209,20 @@ export default {
 
       this.addCarToOwnerPopup = false;
 
-      this.$axios.post(`/cars`, {
+      let req = {
         type: this.newCar.transportType,
         number: this.newCar.number,
         numberOfSeats: this.newCar.numberOfSeats,
         transportType: this.newCar.type,
         owner: this.currOwnerToAddCar.id,
-      }).then(res => {
+      }
+      if(this.newCar.type == 'travel'){
+        req.from = this.newCar.from;
+        req.to = this.newCar.to;
+      }
+
+      this.$axios.post(`/cars`, req).then(res => {
+        console.log(res);
          this.$vs.notification({
           position:'top-center',
             color:'success',
@@ -1388,6 +1448,8 @@ export default {
       this.getCenters();
       this.getEmployees();
     }
+
+    this.getCities();
 
     this.getCarsOptions();
     this.getCentersOptions();
