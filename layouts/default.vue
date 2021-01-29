@@ -41,12 +41,7 @@ export default {
     setTimeout(() => {
       this.isLoading = false;
     }, 4000)
-    if (localStorage.getItem("account")) {
-      let account = JSON.parse(localStorage.getItem("account"));
-      this.$auth.setUser(account);
-    }else{
-      this.$auth.logout();
-    }
+   
   }
 }
 </script>

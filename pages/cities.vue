@@ -51,7 +51,6 @@
                         <vs-button
                           danger
                           border
-                          
                         >
                         <img style="width:20px;" src="@/assets/imgs/icons/delete.svg" alt="">
                           
@@ -103,6 +102,8 @@
             </h4>
         </template>
 
+
+
         <div>
           <div class="form-group">
             <label> الإسم باللغة العربية </label>
@@ -128,6 +129,7 @@
 
 <script>
 export default {
+  middleware: ['auth'],
   data(){
     return {
       isLoading: true,
